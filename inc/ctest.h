@@ -115,10 +115,12 @@ extern jmp_buf g_ExceptionJump;
     static void TestFunctionCleanup(void)
 
 #define CTEST_END_TEST_SUITE(testSuiteName) \
-    static const TEST_FUNCTION_DATA STR_CONCAT(TestFunctionData, EXPAND_1(CTEST_INC(__COUNTER__))) = { NULL, NULL, NULL, NULL, CTEST_TEST_FUNCTION }; \
-    C_LINKAGE_PREFIX const TEST_FUNCTION_DATA TestListHead_##testSuiteName = { NULL, NULL, &STR_CONCAT(TestFunctionData, EXPAND_1(CTEST_DEC(CTEST_DEC(__COUNTER__)))), NULL, CTEST_END_SUITE }; \
-    static const int* TestListHead_End_##testSuiteName = &TestListHead_Begin_##testSuiteName;
+    C_LINKAGE_PREFIX const TEST_FUNCTION_DATA TestListHead_##testSuiteName = { NULL, NULL, &STR_CONCAT(TestFunctionData, EXPAND_1(CTEST_DEC(__COUNTER__))), NULL, CTEST_END_SUITE }; \
 
+//    static const int* TestListHead_End_##testSuiteName = &TestListHead_Begin_##testSuiteName;
+
+//    static const TEST_FUNCTION_DATA STR_CONCAT(TestFunctionData, EXPAND_1(CTEST_INC(__COUNTER__))) = { NULL, NULL, NULL, NULL, CTEST_TEST_FUNCTION };
+    
 #define PRINT_MY_ARG_2(A)
 
 #define PRINT_MY_ARG_1(A) \
